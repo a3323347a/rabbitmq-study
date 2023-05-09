@@ -20,6 +20,11 @@ public class HelloListener {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
+    /**
+     * 利用redis缓存唯一id来防止重复消费
+     *
+     * @param message
+     */
     @RabbitListener(queues = "my_queue")
     public void service(Message message) {
         String messageId = message.getMessageProperties().getMessageId();
